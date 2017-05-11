@@ -3,8 +3,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 class ApiServer{
-    constructor ( _port ) {
-        this._port = _port;
+    constructor ( ) {
         this._app = express();
         // parse application/x-www-form-urlencoded
         this._app.use(bodyParser.urlencoded({ extended: false }))
@@ -20,11 +19,18 @@ class ApiServer{
             }catch(err){}
             next();
         })
-        this._app[_method]( _route, _action.run);
+        this._app[_method]( _route, _action );
         return this;
     }
-    listen(){
-        //------ after all routes --------------------//
+    setActions( _arrActions ){
+        console.log(typeof _arrActions);
+        if ( typeof _arrActions == "object" )
+            _arrActions.map((item)=> this.setAction( item.method, item.route, item.action ));
+        return this;
+    }
+    listen( _port ){
+        this._port = _port;
+       //------ after all routes --------------------//
         this._app.get   ('*', (req, res) =>  res.send({}) );
         this._app.post  ('*', (req, res) =>  res.send({}) );
         this._app.put   ('*', (req, res) =>  res.send({}) );
