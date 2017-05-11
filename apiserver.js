@@ -5,17 +5,17 @@ var bodyParser = require('body-parser');
 class ApiServer{
     constructor ( ) {
         this._app = express();
-        // parse application/x-www-form-urlencoded
-        this._app.use(bodyParser.urlencoded({ extended: false }))
-        // parse application/json
-        this._app.use(bodyParser.json())        
-        // parse data
+        
+        this._app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
+        this._app.use(bodyParser.json())  // parse application/json      
+
+        this._app.use(express.static('public'));
      }
     setAction( _method, _route, _action){
         this._app.use( _route, (req, res, next)=>{
-            req.jsdata = {};
+            req.jsdata = { incoming: req.params.data };
             try{
-                 req.jsdata = JSON.parse(req.params.data);
+                 req.jsdata = Object.assign( req.jsdata, JSON.parse(req.params.data) );
             }catch(err){}
             next();
         })
@@ -23,7 +23,6 @@ class ApiServer{
         return this;
     }
     setActions( _arrActions ){
-        console.log(typeof _arrActions);
         if ( typeof _arrActions == "object" )
             _arrActions.map((item)=> this.setAction( item.method, item.route, item.action ));
         return this;

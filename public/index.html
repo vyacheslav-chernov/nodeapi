@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script  src="https://code.jquery.com/jquery-3.2.1.min.js"  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="  crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+      class Hello extends React.Component {
+
+        constructor(props) {
+          super(props);
+
+          this.state = { title: "Hello component" };
+        }        
+        componentDidMount() {
+        }
+        render(){
+          return <div>
+                    <h1>{this.props.message}, world! It's my first react app, making by self !!! {this.state.title} </h1>
+                    <button onClick={this.clickme.bind(this)}>click</button>
+                </div>;
+        }
+        clickme(){
+          $.get("/version", {}, ( data )=>{ this.setState( { title: 'Version='+data.out} ) } );
+        }
+
+      }
+
+      ReactDOM.render(
+        <Hello message="Hello" />,
+        document.getElementById('root')
+      );
+
+    </script>
+  </body>
+</html>
