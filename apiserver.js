@@ -1,6 +1,7 @@
 
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 class ApiServer{
     constructor ( ) {
@@ -9,6 +10,7 @@ class ApiServer{
         this._app.use(bodyParser.urlencoded({ extended: false })) // parse application/x-www-form-urlencoded
         this._app.use(bodyParser.json())  // parse application/json      
 
+        this._app.use(session({ secret: 'keyboard cat & dog', resave: false,  saveUninitialized: true, cookie: { maxAge: 60000 }}))
         this._app.use(express.static('public'));
      }
     setAction( _method, _route, _action){

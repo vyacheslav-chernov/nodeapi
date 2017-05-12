@@ -14,34 +14,6 @@
   <body>
     <div id="root"></div>
 
-    <script type="text/babel">
-
-      class Hello extends React.Component {
-
-        constructor(props) {
-          super(props);
-
-          this.state = { title: "Hello component" };
-        }        
-        componentDidMount() {
-        }
-        render(){
-          return <div>
-                    <h1>{this.props.message}, world! It's my first react app, making by self !!! {this.state.title} </h1>
-                    <button onClick={this.clickme.bind(this)}>click</button>
-                </div>;
-        }
-        clickme(){
-          $.get("/version", {}, ( data )=>{ this.setState( { title: 'Version='+data.out} ) } );
-        }
-
-      }
-
-      ReactDOM.render(
-        <Hello message="Hello" />,
-        document.getElementById('root')
-      );
-
-    </script>
+    <script type="text/babel" src="script.js">   </script>
   </body>
 </html>
