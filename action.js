@@ -1,6 +1,6 @@
 //********************** Custom action class */
 
-class Action{
+export default class Action{
 
     run( req, res ){
 
@@ -11,10 +11,8 @@ class Action{
         res.status(200).send( JSON.stringify( data ) );
     }
     getActions(){
-        return [ 
+        return [
             { method: 'get', route: '/:data', action: this.run }
         ];
     }
 }
-
-module.exports = Action;

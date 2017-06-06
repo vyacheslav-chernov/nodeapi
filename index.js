@@ -1,6 +1,7 @@
 //*********************************************************************************//
 var ApiServer = require('./apiserver');
-var Action    = require('./action');
+//var Action    = require('./action');
+import Action from "./action"
 
 let action = new Action();
 
