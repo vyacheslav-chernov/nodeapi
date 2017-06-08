@@ -1,9 +1,7 @@
 //*********************************************************************************//
 import ApiServer from "./apiserver";
-import Action from "./actions/action";
-
-let action = new Action();
+import ActionsServer from "./ServerActions"
 
 let api = new ApiServer( ).
-    setActions( action.getActions() ).
+    setActions( ActionsServer ).
     listen( 3030 );
