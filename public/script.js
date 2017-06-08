@@ -4,7 +4,7 @@
           super(props);
 
           this.state = { title: "" };
-        }        
+        }
         componentDidMount() {
         }
 
@@ -17,7 +17,9 @@
                 </div>;
         }
         clickme(){
-          $.get("/version", {}, ( data )=>{ this.setState( { title: 'Version = '+data.out+' / '+(new Date()).toString()} ) } );
+          fetch("/version")
+            .then( (res) => res.json() )
+            .then( ( data ) => { this.setState( { title: 'Version = '+data.out+' / '+(new Date()).toString()} ) } );
         }
 
       }

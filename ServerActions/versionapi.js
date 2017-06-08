@@ -1,12 +1,12 @@
 //********************** Custom action class */
 
-export default  [
+export default (store)=>  [
             {
               method: 'get',
               route: '/:data',
               action: (req, res) => res.json( {
                 ...req.jsdata,
-                out: '1.0.0'
+                out: store.version
               })
             }
         ];
