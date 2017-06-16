@@ -19,7 +19,7 @@
         clickme(){
           fetch("/version")
             .then( (res) => res.json() )
-            .then( ( data ) => { this.setState( { title: 'Version = '+data.out+' / '+(new Date()).toString()} ) } );
+            .then( ( data ) => { this.setState( { title: 'Version = '+data.result+' / '+(new Date()).toString()} ) } );
         }
 
       }
