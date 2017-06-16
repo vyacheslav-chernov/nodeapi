@@ -2,7 +2,7 @@
 
 export default (store)=>  [
             {
-              route: '/time/',
+              route: '/time/get',
               action: fn1( store )
             }
         ];
