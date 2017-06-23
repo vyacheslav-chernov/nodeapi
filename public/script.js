@@ -17,7 +17,7 @@
                 </div>;
         }
         clickme(){
-          fetch("/version")
+          fetch("api/version")
             .then( (res) => res.json() )
             .then( ( data ) => { this.setState( { title: 'Version = '+data.result+' / '+(new Date()).toString()} ) } );
         }

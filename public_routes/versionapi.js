@@ -4,7 +4,11 @@ export default (store)=>  [
             {
               route: '/:data',
               action: fn1( store )
-            }
+            },
+            {
+              route: '/api/version',
+              action: fn1( store )
+            },
         ];
 
 
